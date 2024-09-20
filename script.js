@@ -62,7 +62,7 @@ let bookingData = {
           break;
         case 4:
             bookingData.ConfirM = userInput;
-            if(bookingData.ConfirM=="yes"||bookingData.ConfirM=="Yes"){
+              if (bookingData.ConfirM.toLowerCase() === "yes" {
             addMessage(`Amount We charges for the selected place is ${bookingData.place} :Rs 99/-`, 'bot-message');
             addMessage(`Please pay the full amount to confirm ticket`, 'bot-message');
             currentStep++;
