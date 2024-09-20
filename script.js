@@ -38,49 +38,48 @@ let bookingData = {
   // Chatbot conversation flow for booking
   function processChatFlow(userInput) {
     setTimeout(() => {
-      switch (currentStep) {
-        case 0:
-          addMessage("Welcome to the Tourism Ticket Booking System! Where would you like to go?", 'bot-message');
-          currentStep++;
-          break;
-        case 1:
-          bookingData.place = userInput;
-          addMessage(`The Place  ${bookingData.place}  You have Selected is Quiet Impressive`, 'bot-message');
-          addMessage(`Great! Then How many persons are you booking for  ${bookingData.place}?`, 'bot-message');
-          currentStep++;
-          break;
-        case 2:
-          bookingData.persons = userInput;
-          addMessage("Got it! What date would you like to book?", 'bot-message');
-          currentStep++;
-          break;
-        case 3:
-          bookingData.date = userInput;
-          addMessage("Awesome! Tickets are Available ", 'bot-message');
-          addMessage(`Would You Like to Continue ?`, 'bot-message');
-          currentStep++;
-          break;
-        case 4:
-            bookingData.ConfirM = userInput;
-              if (bookingData.ConfirM.toLowerCase() === "yes" {
-            addMessage(`Amount We charges for the selected place is ${bookingData.place} :Rs 99/-`, 'bot-message');
-            addMessage(`Please pay the full amount to confirm ticket`, 'bot-message');
-            currentStep++;
-            break;
+        switch (currentStep) {
+            case 0:
+                addMessage("Welcome to the Tourism Ticket Booking System! Where would you like to go?", 'bot-message');
+                currentStep++;
+                break;
+            case 1:
+                bookingData.place = userInput;
+                addMessage(`The place ${bookingData.place} you have selected is quite impressive`, 'bot-message');
+                addMessage(`Great! How many persons are you booking for ${bookingData.place}?`, 'bot-message');
+                currentStep++;
+                break;
+            case 2:
+                bookingData.persons = userInput;
+                addMessage("Got it! What date would you like to book?", 'bot-message');
+                currentStep++;
+                break;
+            case 3:
+                bookingData.date = userInput;
+                addMessage("Awesome! Tickets are available.", 'bot-message');
+                addMessage("Would you like to continue?", 'bot-message');
+                currentStep++;
+                break;
+            case 4:
+                bookingData.ConfirM = userInput;
+                if (bookingData.ConfirM.toLowerCase() === "yes") {
+                    addMessage(`The amount we charge for ${bookingData.place} is Rs 99/- per person.`, 'bot-message');
+                    addMessage("Please pay the full amount to confirm the ticket.", 'bot-message');
+                    currentStep++;
+                } else {
+                    Confirm();
+                }
+                break;
+            case 5:
+                bookingData.tamt = userInput;
+                confirmBooking();
+                break;
+            default:
+                addMessage("Sorry, I didn't understand that.", 'bot-message');
         }
-            else{
-             Confirm();
-             break;
-            }
-        case 5:
-          bookingData.tamt = userInput;
-          confirmBooking();
-          break;
-        default:
-          addMessage("Sorry, I didn't understand that.", 'bot-message');
-      }
     }, 1000); // Delay to simulate typing
-  }
+}
+
   
   // Final booking confirmation
   function confirmBooking() {
